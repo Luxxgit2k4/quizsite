@@ -1,9 +1,9 @@
 const questions = [
   { question: "What is the capital city of France?", answer: "PARIS" },
-  { question: "How many continents are there in the world?", answer: "7", answer: "SEVEN" },
-  { question: "What is the result of 5 + 7?", answer: "12", answer: "TWELVE" },
+  { question: "How many continents are there in the world?", answer: "7" },
+  { question: "What is the result of 5 + 7?", answer: "12" },
   { question: "What is the pigment present in green leaves?", answer: "CHLOROPHYLL" },
-  { question: "What is the largest mammal on Earth?", answer: "BLUEWHALE" , answer: "BLUE WHALE" }
+  { question: "What is the largest mammal on Earth?", answer: "BLUE WHALE" }
 ];
 
 let currentQuestion = 0;
@@ -24,45 +24,47 @@ function showQuestion(questionNumber) {
 
 function handleKeyPress(event, questionNumber) {
   if (event.key === "Enter") {
-      checkAnswer(questionNumber);
+    checkAnswer(questionNumber);
   }
 }
 
 function checkAnswer(questionNumber) {
   const answerInput = document.getElementById(`answer${questionNumber}`);
-  const userAnswer = answerInput.value.trim(); 
+  const userAnswer = answerInput.value.trim().toUpperCase();
 
-  const correctAnswer = questions[questionNumber - 1].answer; 
+  const correctAnswersArray = questions[questionNumber - 1].answer.split(",").map(answer => answer.trim().toUpperCase());
 
-  if (userAnswer.toUpperCase() === correctAnswer.toUpperCase()) {
-      console.log("Correct!");
-      correctAnswers++;
+  if (correctAnswersArray.includes(userAnswer)) {
+    console.log("Correct!");
+    correctAnswers++;
   } else {
-      console.log("Wrong!");
+    console.log("Wrong!");
   }
 
   currentQuestion++;
 
   if (currentQuestion < questions.length) {
-      showQuestion(currentQuestion + 1);
+    showQuestion(currentQuestion + 1);
   } else {
-      showResults();
+    showResults();
   }
 }
+
 function showResults() {
   const percentage = Math.round((correctAnswers / questions.length) * 100);
   const heading = document.getElementById("heading");
 
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = `YOU GOT ${correctAnswers} QUESTIONS CORRECT<br> <br> <br> YOUR SCORE IS ${percentage}%`;
-   resultDiv.style.opacity = "1";
+  resultDiv.style.opacity = "1";
   resultDiv.style.transform = "translateY(0)";
+  resultDiv.classList.remove("hide");
 
-  resultDiv.style.display = "block";
-const questionContainer = document.getElementById(`question${currentQuestion}`);
-  questionContainer.remove();
+  const quizContainer = document.getElementById(`question${currentQuestion}`);
+  quizContainer.remove();
   heading.remove();
 }
+
 function toggleDarkMode() {
   const body = document.body;
   body.classList.toggle("dark-mode");
