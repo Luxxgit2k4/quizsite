@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="icon" type="image/png" href = "quiz-icon-11.jpg">
+</head>
+
+<body>
+    <div class="wrapper">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="container">
+       <div id ="heading"> <h1>Quiz</h1> </div>
+        <div id="quiz-container">
+            <form>
+                <div class="question" id="question1">
+                    <label for="answer1">What is the capital city of France?</label>
+                    <input type="text" id="answer1" />
+                    <button  type="button" onclick="checkAnswer(1)">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <button id="dark-mode-toggle">SWITCH MODE</button>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>
