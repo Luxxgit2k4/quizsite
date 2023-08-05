@@ -1,9 +1,9 @@
 const questions = [
-  { question: "What is the capital city of France?", answer: "PARIS" },
-  { question: "How many continents are there in the world?", answer: "7" },
-  { question: "What is the result of 5 + 7?", answer: "12" },
-  { question: "What is the pigment present in green leaves?", answer: "CHLOROPHYLL" },
-  { question: "What is the largest mammal on Earth?", answer: "BLUE WHALE" }
+  { question: "What is the capital city of France?", answers: ["PARIS"] },
+  { question: "How many continents are there in the world?", answers: ["7", "SEVEN"] },
+  { question: "What is the result of 5 + 7?", answers: ["12", "TWELVE"] },
+  { question: "What is the pigment present in green leaves?", answers: ["CHLOROPHYLL"] },
+  { question: "What is the largest mammal on Earth?", answers: ["BLUE WHALE"] }
 ];
 
 let currentQuestion = 0;
@@ -32,7 +32,7 @@ function checkAnswer(questionNumber) {
   const answerInput = document.getElementById(`answer${questionNumber}`);
   const userAnswer = answerInput.value.trim().toUpperCase();
 
-  const correctAnswersArray = questions[questionNumber - 1].answer.split(",").map(answer => answer.trim().toUpperCase());
+  const correctAnswersArray = questions[questionNumber - 1].answers.map(answer => answer.trim().toUpperCase());
 
   if (correctAnswersArray.includes(userAnswer)) {
     console.log("Correct!");
@@ -76,3 +76,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   showQuestion(1);
 });
+
